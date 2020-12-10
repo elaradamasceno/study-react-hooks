@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Form from './components/Form/Form';
+import {Container, Typography} from '@material-ui/core';
+import 'fontsource-roboto';
 
+import {validateCpf, validatePassword} from './models/Register';
+import ValidationsForm from './contexts/ValidationsForm';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Container component="article" maxWidth="sm">
+            <Typography variant="h3" align="center" component="h1" >Formulário de Cadastro</Typography>
+            <ValidationsForm.Provider value={{cpf: validateCpf, password: validatePassword}}>
+                <Form submit={submitForm}></Form>
+            </ValidationsForm.Provider>
+        </Container>
+    );
+}
+
+function submitForm(data){
+    console.log(data)
 }
 
 export default App;
